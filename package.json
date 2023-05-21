@@ -1,0 +1,18 @@
+{
+  "name": "LUNC DEGENS MINECRAFT LAUNCHER",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+	 "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^24.3.1",
+    "express": "^4.18.2",
+    "minecraft-launcher-core": "^3.16.18",
+    "msmc": "^4.1.0"
+  }
+}

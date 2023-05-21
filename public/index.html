@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LUNC Degen Minecraft Launcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+        }
+		.launcher-image {
+            width: 800px;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+    <h1>LUNC Degen Minecraft Launcher</h1>
+	<img src="coolproject.png" class="launcher-image" alt="Minecraft Launcher Image"></img>
+    <label for="version-select">Select Minecraft Version:</label>
+    <select id="version-select">
+        <option value="1.17.1">1.17.1</option>
+        <option value="1.18.2">1.18.2</option>
+        <option value="1.19.1">1.19.1</option>
+        <!-- Add more version options here as needed -->
+    </select>
+    <br><br>
+    <label for="max-memory-select">Select Maximum Memory:</label>
+    <select id="max-memory-select">
+        <option value="1G">1G</option>
+        <option value="2G">2G</option>
+        <option value="4G">4G</option>
+        <option value="6G">6G</option>
+        <!-- Add more memory options here as needed -->
+    </select>
+    <br><br>
+    <label for="min-memory-select">Select Minimum Memory:</label>
+    <select id="min-memory-select">
+        <option value="1G">1G</option>
+        <option value="2G">2G</option>
+        <option value="4G">4G</option>
+        <option value="6G">6G</option>
+        <!-- Add more memory options here as needed -->
+    </select>
+    <br><br>
+    <button onclick="launchMinecraft()">Launch Minecraft</button>
+    <br><br>
+    <textarea id="console" readonly></textarea>
+
+    <script>
+        const consoleOutput = document.getElementById('console');
+
+        function writeToConsole(text) {
+            consoleOutput.value += text + '\n';
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+
+        async function launchMinecraft() {
+            const selectedVersion = document.getElementById('version-select').value;
+            const selectedMaxMemory = document.getElementById('max-memory-select').value;
+            const selectedMinMemory = document.getElementById('min-memory-select').value;
+            writeToConsole('Starting Minecraft (' + selectedVersion + ')...');
+
+            const response = await fetch(`/launch?version=${selectedVersion}&maxMemory=${selectedMaxMemory}&minMemory=${selectedMinMemory}`);
+            const data = await response.text();
+
+            writeToConsole(data);
+        }
+    </script>
+</body>
+</html>
